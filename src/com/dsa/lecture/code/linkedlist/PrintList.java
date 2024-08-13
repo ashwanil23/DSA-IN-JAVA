@@ -12,7 +12,7 @@ public class PrintList {
             this.next = null;
         }
     }
-    private void printList(ListNode head){
+    private void printList(){
         ListNode current = head;
         while(current != null){
             System.out.print(current.data + "-->");
@@ -43,7 +43,7 @@ public class PrintList {
         firstNode.next = secondNode;
         secondNode.next = thirdNode;
         thirdNode.next = forthNode;
-        sll.printList(sll.head);
+        sll.printList();
         System.out.println("Total " + sll.listCount(sll.head) + " members");
     }
 
