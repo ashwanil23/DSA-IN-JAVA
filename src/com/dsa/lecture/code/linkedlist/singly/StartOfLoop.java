@@ -1,6 +1,6 @@
-package com.dsa.lecture.code.linkedlist;
+package com.dsa.lecture.code.linkedlist.singly;
 
-public class LoopDetection {
+public class StartOfLoop {
     private static ListNode head;
 
     private static class ListNode{
@@ -21,20 +21,30 @@ public class LoopDetection {
         System.out.print("NULL");
         System.out.println();
     }
-    private static Boolean loopDetection(){
+
+    private static ListNode getStartOfLoop(ListNode slowPtr){
+        ListNode temp = head;
+        while(temp != slowPtr){
+            temp = temp.next;
+            slowPtr = slowPtr.next;
+        }
+        return temp;
+    }
+
+    private static ListNode startOfLoop(){
         ListNode fastPtr = head;
         ListNode slowPtr = head;
         while(fastPtr != null && fastPtr.next != null){
             fastPtr = fastPtr.next.next;
             slowPtr = slowPtr.next;
-            if(slowPtr == fastPtr) return true;
+            if(slowPtr == fastPtr) return  getStartOfLoop(slowPtr);
         }
-        return false;
+        return null;
     }
 
     public static void main(String[] args) {
-        LoopDetection ld = new LoopDetection();
-        ld.head = new ListNode(5);
+        StartOfLoop sol = new StartOfLoop();
+        sol.head = new ListNode(5);
         ListNode first = new ListNode(10);
         ListNode second = new ListNode(20);
         ListNode third = new ListNode(30);
@@ -42,17 +52,14 @@ public class LoopDetection {
         ListNode fifth = new ListNode(50);
         ListNode sixth = new ListNode(60);
 
-        ld.head.next = first;
+        sol.head.next = first;
         first.next = second;
         second.next = third;
         third.next = forth;
         forth.next = fifth;
         fifth.next = third;
 
-        if(loopDetection()){
-            System.out.println("Loop Exists");
-        }else{
-            System.out.println("Loop Not Exists");
-        }
+        assert startOfLoop() != null;
+        System.out.println("start of the loop is "+ startOfLoop().data);
     }
 }

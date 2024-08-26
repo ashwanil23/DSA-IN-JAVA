@@ -1,19 +1,18 @@
-package com.dsa.lecture.code.linkedlist;
+package com.dsa.lecture.code.linkedlist.singly;
 
-public class RemoveKey {
+public class RemoveLoop {
     private static ListNode head;
 
     private static class ListNode{
         private int data;
         private ListNode next;
 
-        public ListNode(int data){
+        private ListNode(int data){
             this.data = data;
             this.next = null;
         }
     }
-
-    public static void printList(){
+    private static void printList(){
         ListNode current = head;
         while(current != null){
             System.out.printf("%d --> ", current.data);
@@ -23,24 +22,28 @@ public class RemoveKey {
         System.out.println();
     }
 
-    public static void removeKey(int key){
-        ListNode current = head;
-        ListNode previous = null;
-        if(current != null && current.data == key){
-            current = current.next;
-            return;
+    private static void getRemoveLoop(ListNode slowPtr){
+        ListNode temp = head;
+        while(temp.next != slowPtr.next){
+            temp = temp.next;
+            slowPtr = slowPtr.next;
         }
-        while(current != null && current.data != key){
-            previous = current;
-            current = current.next;
-        }
-        if(current == null) return;
-        previous.next = current.next;
+        slowPtr.next = null;
     }
 
-    public static void main(String... args){
-        RemoveKey rk = new RemoveKey();
-        rk.head = new ListNode(5);
+    private static void removeLoop(){
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
+        while(fastPtr != null && fastPtr.next != null){
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+            if(slowPtr == fastPtr) getRemoveLoop(slowPtr);
+        }
+    }
+
+    public static void main(String[] args) {
+        RemoveLoop rl = new RemoveLoop();
+        rl.head = new ListNode(5);
         ListNode first = new ListNode(10);
         ListNode second = new ListNode(20);
         ListNode third = new ListNode(30);
@@ -48,15 +51,15 @@ public class RemoveKey {
         ListNode fifth = new ListNode(50);
         ListNode sixth = new ListNode(60);
 
-        rk.head.next = first;
+        rl.head.next = first;
         first.next = second;
         second.next = third;
         third.next = forth;
         forth.next = fifth;
         fifth.next = sixth;
+        sixth.next = third;
 
-        printList();
-        removeKey(30);
+        removeLoop();
         printList();
     }
 }

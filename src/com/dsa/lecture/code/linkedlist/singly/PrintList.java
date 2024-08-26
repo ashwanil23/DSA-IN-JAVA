@@ -1,5 +1,4 @@
-package com.dsa.lecture.code.linkedlist;
-import com.dsa.lecture.code.linkedlist.SinglyLinkedList;
+package com.dsa.lecture.code.linkedlist.singly;
 
 public class PrintList {
     private ListNode head;

@@ -1,4 +1,4 @@
-package com.dsa.lecture.code.linkedlist;
+package com.dsa.lecture.code.linkedlist.singly;
 
 public class InsertInSortedList {
     private ListNode head;
