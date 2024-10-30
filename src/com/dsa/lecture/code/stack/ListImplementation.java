@@ -30,7 +30,6 @@ public class ListImplementation {
         if (isEmpty()){
             this.top = new ListNode(data);
             this.length++;
-            return;
         }else{
             ListNode newNode = new ListNode(data);
             newNode.next = this.top;

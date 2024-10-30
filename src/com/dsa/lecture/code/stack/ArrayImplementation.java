@@ -22,7 +22,7 @@ public class ArrayImplementation {
     }
     public void push(int data){
         if(isFull()){
-            throw new NoSuchElementException("Stack empty");
+            throw new NoSuchElementException("Stack full");
         }else{
             this.top++;
             this.stackArray[top] = data;
