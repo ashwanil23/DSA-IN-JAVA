@@ -1,4 +1,4 @@
-package com.dsa.Tree;
+package com.dsa.lecture.code.Tree;
 
 import com.sun.source.tree.Tree;
 

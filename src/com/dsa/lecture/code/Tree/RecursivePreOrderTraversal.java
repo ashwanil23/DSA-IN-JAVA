@@ -1,8 +1,6 @@
-package com.dsa.Tree;
+package com.dsa.lecture.code.Tree;
 
-import java.util.Stack;
-
-public class IterativeInOrderTraversal {
+public class RecursivePreOrderTraversal {
     private TreeNode root;
 
     private static class TreeNode{
@@ -33,25 +31,18 @@ public class IterativeInOrderTraversal {
         return root;
     }
 
-    public static void inOrder(TreeNode root){
+    public static void preOrder(TreeNode root){
         if(root == null) return;
-        Stack<TreeNode> newStack = new Stack<>();
-        TreeNode temp = root;
-        while(temp != null || !newStack.isEmpty()){
-            if(temp != null){
-                newStack.push(temp);
-                temp = temp.left;
-            }else{
-                temp = newStack.pop();
-                System.out.print(temp.data+" ");
-                temp = temp.right;
-            }
+        else{
+            System.out.print(root.data);
+            preOrder(root.left);
+            preOrder(root.right);
         }
     }
 
     public static void main(String[] args) {
-        IterativeInOrderTraversal tree = new IterativeInOrderTraversal();
+        RecursivePreOrderTraversal tree = new RecursivePreOrderTraversal();
         TreeNode root = tree.createBinaryTree(1);
-        inOrder(root);
+        preOrder(root);
     }
 }

@@ -1,4 +1,4 @@
-package com.dsa.Tree;
+package com.dsa.lecture.code.Tree;
 
 import java.util.LinkedList;
 import java.util.Queue;

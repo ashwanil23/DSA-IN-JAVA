@@ -1,4 +1,4 @@
-package com.dsa.Tree;
+package com.dsa.lecture.code.Tree;
 
 public class ValidBST {
     private TreeNode root;

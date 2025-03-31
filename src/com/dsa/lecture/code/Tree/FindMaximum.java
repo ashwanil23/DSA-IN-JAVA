@@ -1,6 +1,6 @@
-package com.dsa.Tree;
+package com.dsa.lecture.code.Tree;
 
-public class RecursivePreOrderTraversal {
+public class FindMaximum {
     private TreeNode root;
 
     private static class TreeNode{
@@ -31,18 +31,19 @@ public class RecursivePreOrderTraversal {
         return root;
     }
 
-    public static void preOrder(TreeNode root){
-        if(root == null) return;
-        else{
-            System.out.print(root.data);
-            preOrder(root.left);
-            preOrder(root.right);
-        }
-    }
+    public static int findMax(TreeNode rootNode){
+        if(rootNode == null) return Integer.MIN_VALUE;
+        int result = rootNode.data;
+        int left = findMax(rootNode.left);
+        int right = findMax(rootNode.right);
 
+        if(left > result) return left;
+        if(right > result) return right;
+        return result;
+    }
     public static void main(String[] args) {
-        RecursivePreOrderTraversal tree = new RecursivePreOrderTraversal();
+        FindMaximum tree = new FindMaximum();
         TreeNode root = tree.createBinaryTree(1);
-        preOrder(root);
+        System.out.println("Maximum is : " + findMax(root));
     }
 }

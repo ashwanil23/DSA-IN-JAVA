@@ -1,6 +1,8 @@
-package com.dsa.Tree;
+package com.dsa.lecture.code.Tree;
 
-public class FindMaximum {
+import java.util.Stack;
+
+public class IterativeInOrderTraversal {
     private TreeNode root;
 
     private static class TreeNode{
@@ -31,19 +33,25 @@ public class FindMaximum {
         return root;
     }
 
-    public static int findMax(TreeNode rootNode){
-        if(rootNode == null) return Integer.MIN_VALUE;
-        int result = rootNode.data;
-        int left = findMax(rootNode.left);
-        int right = findMax(rootNode.right);
-
-        if(left > result) return left;
-        if(right > result) return right;
-        return result;
+    public static void inOrder(TreeNode root){
+        if(root == null) return;
+        Stack<TreeNode> newStack = new Stack<>();
+        TreeNode temp = root;
+        while(temp != null || !newStack.isEmpty()){
+            if(temp != null){
+                newStack.push(temp);
+                temp = temp.left;
+            }else{
+                temp = newStack.pop();
+                System.out.print(temp.data+" ");
+                temp = temp.right;
+            }
+        }
     }
+
     public static void main(String[] args) {
-        FindMaximum tree = new FindMaximum();
+        IterativeInOrderTraversal tree = new IterativeInOrderTraversal();
         TreeNode root = tree.createBinaryTree(1);
-        System.out.println("Maximum is : " + findMax(root));
+        inOrder(root);
     }
 }
